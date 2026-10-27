@@ -1,0 +1,53 @@
+
+EXPERIMENT 3: MULTI-TASK LANE DETECTION AND ROAD SEGMENTATION
+
+Dataset:
+- Total images: 5,000
+- Image resolution: 1248 x 384
+- Training split: 3,500 images (000001-003500)
+- Validation split: 750 images (003501-004250)
+- Test split: 750 images (004251-005000)
+
+Model:
+- Architecture: Multi-task U-Net
+- Shared encoder with task-specific lane and road decoders
+- Training epochs: 30
+- Best validation epoch: 27
+- Best validation loss: 0.0326142173
+- Device: NVIDIA GeForce RTX 5060 Laptop GPU
+
+FINAL TEST RESULTS
+Mean per-image metrics at probability threshold 0.5:
+
+Lane Detection:
+- IoU: 0.894229
+- Dice: 0.942478
+- Precision: 0.955776
+- Recall: 0.930446
+
+Road Segmentation:
+- IoU: 0.993060
+- Dice: 0.996515
+- Precision: 0.995985
+- Recall: 0.997048
+
+OUTPUT FILES:
+- test_metrics_summary.csv
+- test_metrics_per_image.csv
+- test_predictions/ (12 visual comparison images)
+
+Best model checkpoint:
+- ../checkpoints/best_model.pth
+
+Visual inspection:
+- Predictions generally follow lane markings and road boundaries.
+- Lane detection has more visible errors than road segmentation.
+- Crosswalk treatment follows the dataset's existing mask conventions.
+
+Limitations:
+- Evaluation was performed on the held-out test split from the same
+  CARLA data collection setup.
+- Performance on other towns, weather conditions, lighting conditions,
+  or real-world roads has not been established.
+- The dataset consists of sequential frames, so temporal correlation
+  between nearby frames may affect how broadly the results generalize.

@@ -34,3 +34,10 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Experiment backups
+experiment3_original_backup/
+
+# Controlled experiment: keep checkpoints and training logs local
+experiment3_controlled/checkpoints/
+experiment3_controlled/logs/
